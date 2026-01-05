@@ -10,7 +10,7 @@ Simulador profissional de investimentos em renda fixa desenvolvido por **Alex Ga
 ## Funcionalidades
 
 - Compare **CDB**, **LCI** e **LCA**
-- Cálculo com **dias úteis reais** (feriados até 2050)
+- Cálculo com **dias úteis reais** 
 - Algoritmo de Meeus para feriados móveis
 - Capitalização diária (padrão ANBIMA)
 - Imposto de Renda automático
