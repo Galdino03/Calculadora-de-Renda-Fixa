@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Simulador de Renda Fixa - Alex Galdino</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blur"></div>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="app-header">
+            <p class="author-name">Alex Galdino | Economista</p>
+            <h1 class="main-title">Simulador de Renda Fixa</h1>
+            <p class="subtitle">Compare <span class="highlight">CDB</span>, <span class="highlight">LCI</span> e <span
+                    class="highlight">LCA</span></p>
+        </header>
+
+        <!-- Input Section -->
+        <div class="input-grid">
+            <!-- Parâmetros -->
+            <section class="card">
+                <h2><i class="fa-solid fa-sliders"></i> Parâmetros</h2>
+
+                <div class="field-container">
+                    <label for="amount">Valor da Aplicação (R$)</label>
+                    <div class="input-wrapper">
+                        <span class="prefix">R$</span>
+                        <input type="number" id="amount" value="10000" min="100" step="100">
+                    </div>
+                </div>
+
+                <div class="field-container">
+                    <label for="dataInicio">Data de Início</label>
+                    <div class="input-wrapper">
+                        <input type="date" id="dataInicio" value="2024-04-02">
+                    </div>
+                </div>
+
+                <div class="field-container">
+                    <label for="dataFim">Data de Resgate</label>
+                    <div class="input-wrapper">
+                        <input type="date" id="dataFim" value="2026-04-02">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Indicadores de Mercado -->
+            <section class="card">
+                <h2><i class="fa-solid fa-chart-bar"></i> Indicadores de Mercado</h2>
+
+                <div class="market-grid">
+                    <div class="field-container">
+                        <label for="cdiAnnual">CDI (%)</label>
+                        <div class="input-wrapper">
+                            <span class="prefix">%</span>
+                            <input type="number" id="cdiAnnual" value="14.90" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="field-container">
+                        <label for="ipcaAnnual">IPCA (%)</label>
+                        <div class="input-wrapper">
+                            <span class="prefix">%</span>
+                            <input type="number" id="ipcaAnnual" value="4.83" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="field-container">
+                        <label for="selicAnnual">Selic (%)</label>
+                        <div class="input-wrapper">
+                            <span class="prefix">%</span>
+                            <input type="number" id="selicAnnual" value="15.00" step="0.01">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Títulos para Comparar -->
+        <section class="card">
+            <h2><i class="fa-solid fa-layer-group"></i> Títulos para Comparar</h2>
+
+            <!-- CDB Section -->
+            <h3 class="section-title">CDB</h3>
+            <div class="investments-grid">
+                <div class="investment-card">
+                    <div class="card-header">
+                        <span class="card-label">CDB IPCA+</span>
+                        <span class="card-type">Taxa (% a.a.)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateCdbIpcaFix" value="6.50" step="0.1">
+                    </div>
+                </div>
+
+                <div class="investment-card">
+                    <div class="card-header">
+                        <span class="card-label">CDB Pré</span>
+                        <span class="card-type">Taxa (% a.a.)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateCdbPre" value="13.50" step="0.1">
+                    </div>
+                </div>
+
+                <div class="investment-card">
+                    <div class="card-header">
+                        <span class="card-label">CDB Pós</span>
+                        <span class="card-type">% do CDI</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateCdbPos" value="100" step="1">
+                    </div>
+                </div>
+
+                <div class="investment-card">
+                    <div class="card-header">
+                        <span class="card-label">CDB CDI+</span>
+                        <span class="card-type">CDI + (% a.a.)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateCdbCdi" value="1" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- LCI/LCA Section -->
+            <h3 class="section-title">LCI</h3>
+            <div class="investments-grid">
+                <div class="investment-card exempt">
+                    <div class="card-header">
+                        <span class="card-label">LCI IPCA+ <span class="badge-exempt">Isento IR</span></span>
+                        <span class="card-type">Taxa (% a.a.)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateLciIpcaFix" value="5.50" step="0.1">
+                    </div>
+                </div>
+
+                <div class="investment-card exempt">
+                    <div class="card-header">
+                        <span class="card-label">LCI Pré <span class="badge-exempt">Isento IR</span></span>
+                        <span class="card-type">Taxa (% a.a.)</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateLciPre" value="12.00" step="0.1">
+                    </div>
+                </div>
+
+                <div class="investment-card exempt">
+                    <div class="card-header">
+                        <span class="card-label">LCI Pós <span class="badge-exempt">Isento IR</span></span>
+                        <span class="card-type">% do CDI</span>
+                    </div>
+                    <div class="input-wrapper">
+                        <span class="prefix">%</span>
+                        <input type="number" id="rateLciPos" value="90" step="1">
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Informações do Período -->
+        <section class="card info-period-card" id="infoPeriodCard" style="display: none;">
+            <h2><i class="fa-solid fa-calendar-days"></i> Informações do Período</h2>
+            <div class="info-period-grid">
+                <div class="info-item">
+                    <span class="info-label">Dias Corridos</span>
+                    <span class="info-value" id="diasCorridosDisplay">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Dias Úteis</span>
+                    <span class="info-value" id="diasUteisDisplay">-</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Taxa IR</span>
+                    <span class="info-value" id="taxaIRDisplay">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botão Calcular -->
+        <button class="btn-calculate" id="btnCalculate">
+            <i class="fa-solid fa-calculator"></i> Calcular e Comparar
+        </button>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section">
+            <!-- Placeholder (shown before calculation) -->
+            <section class="card results-placeholder" id="resultsPlaceholder">
+                <h2><i class="fa-solid fa-chart-line"></i> Detalhamento</h2>
+                <div class="placeholder-content">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <p>Clique em "Calcular e Comparar" para ver os resultados</p>
+                </div>
+            </section>
+
+            <!-- Actual Results (hidden until calculation) -->
+            <div id="actualResults" style="display: none;">
+                <!-- Gráfico -->
+                <section class="card">
+                    <h2><i class="fa-solid fa-chart-column"></i> Resultado Comparativo</h2>
+                    <div class="chart-container">
+                        <canvas id="resultsChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- Detalhamento -->
+                <section class="card">
+                    <h2><i class="fa-solid fa-chart-line"></i> Detalhamento</h2>
+                    <div id="detailsContainer"></div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Contato -->
+        <section class="contact-section">
+            <h2>Gostou da simulação?</h2>
+            <p>Entre em contato para montar sua estratégia de investimentos personalizada</p>
+
+            <div class="contact-buttons">
+                <a href="https://wa.me/5519987523408?text=Olá!%20Gostei%20da%20simulação%20de%20renda%20fixa%20e%20gostaria%20de%20saber%20mais%20sobre%20estratégias%20de%20investimento."
+                    target="_blank" class="btn-contact whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="mailto:galdinoas3.ag@gmail.com" class="btn-contact email">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p class="contact-name">Alex Galdino | Economista USP</p>
+                <div class="contact-details">
+                    <span><i class="fa-brands fa-whatsapp"></i> (19) 98752-3408</span>
+                    <span><i class="fa-solid fa-envelope"></i> galdinoas3.ag@gmail.com</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
