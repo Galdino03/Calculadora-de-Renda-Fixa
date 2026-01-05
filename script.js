@@ -160,14 +160,6 @@ function calculateCDIPercentage({ amount, percentCDI, cdiAnnual, diasUteis, taxR
     return { gross, net: gross - tax, taxRate };
 }
 
-function calculateCDIPlus({ amount, cdiAnnual, spreadAnnual, diasUteis, taxRate }) {
-    const annualRate = (cdiAnnual / 100) + (spreadAnnual / 100);
-    const dailyRate = Math.pow(1 + annualRate, 1 / 252) - 1;
-    const gross = amount * Math.pow(1 + dailyRate, diasUteis);
-    const tax = (gross - amount) * taxRate;
-    return { gross, net: gross - tax, taxRate };
-}
-
 function calculateIPCAPlus({ amount, ipcaAnnual, spreadAnnual, diasUteis, taxRate }) {
     const totalRate = (1 + ipcaAnnual / 100) * (1 + spreadAnnual / 100) - 1;
     const dailyRate = Math.pow(1 + totalRate, 1 / 252) - 1;
@@ -228,13 +220,6 @@ function calculateAll() {
             amount,
             percentCDI: getValue('rateCdbPos'),
             cdiAnnual, diasUteis, taxRate
-        }));
-
-    if (getValue('rateCdbCdi') > 0)
-        push('CDB CDI+', calculateCDIPlus({
-            amount, cdiAnnual,
-            spreadAnnual: getValue('rateCdbCdi'),
-            diasUteis, taxRate
         }));
 
     if (getValue('rateLciIpcaFix') > 0)

@@ -95,91 +95,85 @@
         <section class="card">
             <h2><i class="fa-solid fa-layer-group"></i> Títulos para Comparar</h2>
 
-            <!-- CDB Section -->
-            <h3 class="section-title">CDB</h3>
-            <div class="investments-grid">
-                <div class="investment-card">
-                    <div class="card-header">
-                        <span class="card-label">CDB IPCA+</span>
-                        <span class="card-type">Taxa (% a.a.)</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateCdbIpcaFix" value="6.50" step="0.1">
+            <div class="investments-two-columns">
+                <!-- Coluna CDB (Esquerda) -->
+                <div class="investment-column">
+                    <h3 class="section-title">CDB</h3>
+                    <div class="investments-grid-column">
+                        <div class="investment-card">
+                            <div class="card-header">
+                                <span class="card-label">CDB IPCA+</span>
+                                <span class="card-type">Taxa (% a.a.)</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateCdbIpcaFix" value="6.50" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="investment-card">
+                            <div class="card-header">
+                                <span class="card-label">CDB Pré</span>
+                                <span class="card-type">Taxa (% a.a.)</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateCdbPre" value="13.50" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="investment-card">
+                            <div class="card-header">
+                                <span class="card-label">CDB Pós</span>
+                                <span class="card-type">% do CDI</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateCdbPos" value="100" step="1">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="investment-card">
-                    <div class="card-header">
-                        <span class="card-label">CDB Pré</span>
-                        <span class="card-type">Taxa (% a.a.)</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateCdbPre" value="13.50" step="0.1">
+                <!-- Coluna LCI/LCA (Direita) -->
+                <div class="investment-column">
+                    <h3 class="section-title">LCI/LCA</h3>
+                    <div class="investments-grid-column">
+                        <div class="investment-card exempt">
+                            <div class="card-header">
+                                <span class="card-label">LCI/LCA IPCA+ <span class="badge-exempt">Isento
+                                        IR</span></span>
+                                <span class="card-type">Taxa (% a.a.)</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateLciIpcaFix" value="5.50" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="investment-card exempt">
+                            <div class="card-header">
+                                <span class="card-label">LCI/LCA Pré <span class="badge-exempt">Isento IR</span></span>
+                                <span class="card-type">Taxa (% a.a.)</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateLciPre" value="12.00" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="investment-card exempt">
+                            <div class="card-header">
+                                <span class="card-label">LCI/LCA Pós <span class="badge-exempt">Isento IR</span></span>
+                                <span class="card-type">% do CDI</span>
+                            </div>
+                            <div class="input-wrapper">
+                                <span class="prefix">%</span>
+                                <input type="number" id="rateLciPos" value="90" step="1">
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="investment-card">
-                    <div class="card-header">
-                        <span class="card-label">CDB Pós</span>
-                        <span class="card-type">% do CDI</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateCdbPos" value="100" step="1">
-                    </div>
-                </div>
-
-                <div class="investment-card">
-                    <div class="card-header">
-                        <span class="card-label">CDB CDI+</span>
-                        <span class="card-type">CDI + (% a.a.)</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateCdbCdi" value="1" step="0.1">
-                    </div>
-                </div>
-            </div>
-
-            <!-- LCI/LCA Section -->
-            <h3 class="section-title">LCI</h3>
-            <div class="investments-grid">
-                <div class="investment-card exempt">
-                    <div class="card-header">
-                        <span class="card-label">LCI IPCA+ <span class="badge-exempt">Isento IR</span></span>
-                        <span class="card-type">Taxa (% a.a.)</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateLciIpcaFix" value="5.50" step="0.1">
-                    </div>
-                </div>
-
-                <div class="investment-card exempt">
-                    <div class="card-header">
-                        <span class="card-label">LCI Pré <span class="badge-exempt">Isento IR</span></span>
-                        <span class="card-type">Taxa (% a.a.)</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateLciPre" value="12.00" step="0.1">
-                    </div>
-                </div>
-
-                <div class="investment-card exempt">
-                    <div class="card-header">
-                        <span class="card-label">LCI Pós <span class="badge-exempt">Isento IR</span></span>
-                        <span class="card-type">% do CDI</span>
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="prefix">%</span>
-                        <input type="number" id="rateLciPos" value="90" step="1">
-                    </div>
-                </div>
-
-
             </div>
         </section>
 

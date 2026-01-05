@@ -217,6 +217,31 @@ body {
     margin-bottom: 0;
 }
 
+/* Layout de Duas Colunas - CDB e LCI/LCA */
+.investments-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.investment-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.investment-column .section-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.investments-grid-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
 /* Investment Card */
 .investment-card {
     background: var(--bg-input);
@@ -609,6 +634,13 @@ body {
         grid-template-columns: 1fr;
         gap: 0.75rem;
     }
+
+    /* Layout de duas colunas vira uma coluna no mobile */
+    .investments-two-columns {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
 
     .card {
         padding: 1rem;
