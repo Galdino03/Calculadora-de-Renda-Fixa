@@ -1,7 +1,6 @@
-# Calculadora-de-Renda-Fixa
 # Calculadora de Renda Fixa
 
-Simulador profissional de investimentos em renda fixa desenvolvido por **Alex Galdino | Economista USP**.
+Simulador profissional de investimentos em renda fixa desenvolvido por **Alex Galdino | Economista**.
 
 ## Acesse a Calculadora
 
