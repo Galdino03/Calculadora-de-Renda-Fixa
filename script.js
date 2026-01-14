@@ -119,9 +119,27 @@ function formatBRL(value) {
     });
 }
 
+function formatarInputMoeda(valor) {
+    // Remove tudo exceto números
+    const numero = valor.replace(/\D/g, '');
+
+    // Converte para número com decimais
+    const numeroDecimal = (parseFloat(numero) / 100).toFixed(2);
+
+    // Formata para padrão brasileiro
+    return numeroDecimal.replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 function getValue(id) {
     const el = document.getElementById(id);
     if (!el || el.value === '') return 0;
+
+    // Se for o campo 'amount', remover formatação brasileira
+    if (id === 'amount') {
+        const valorLimpo = el.value.replace(/\./g, '').replace(',', '.');
+        return parseFloat(valorLimpo) || 0;
+    }
+
     return parseFloat(el.value);
 }
 
@@ -344,7 +362,8 @@ function updateDetails(results) {
         div.className = i === 0 ? 'detail-card winner' : 'detail-card';
 
         const tax = r.gross - r.net;
-        const realReturn = ((r.net / r.invested - 1) * 100).toFixed(2);
+        const rentabilidadeBruta = ((r.gross / r.invested - 1) * 100).toFixed(2);
+        const rentabilidadeLiquida = ((r.net / r.invested - 1) * 100).toFixed(2);
 
         div.innerHTML = `
             <div class="detail-header">
@@ -371,8 +390,12 @@ function updateDetails(results) {
                     <span class="metric-value">${formatBRL(r.net)}</span>
                 </div>
                 <div class="metric">
-                    <span class="metric-label">Real A.A.</span>
-                    <span class="metric-value">${realReturn}%</span>
+                    <span class="metric-label">Retorno Bruto</span>
+                    <span class="metric-value">${rentabilidadeBruta}%</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Retorno Líquido</span>
+                    <span class="metric-value">${rentabilidadeLiquida}%</span>
                 </div>
             </div>
         `;
@@ -396,6 +419,28 @@ function clearResults() {
 ================================ */
 
 document.getElementById('btnCalculate').addEventListener('click', calculateAll);
+
+// Formatação automática do input de valor
+const inputAmount = document.getElementById('amount');
+if (inputAmount) {
+    inputAmount.addEventListener('input', (e) => {
+        const valor = e.target.value;
+        const apenasNumeros = valor.replace(/\D/g, '');
+
+        if (apenasNumeros) {
+            const numeroFormatado = formatarInputMoeda(apenasNumeros);
+            e.target.value = numeroFormatado;
+        }
+    });
+
+    // Formatar valor inicial se existir
+    if (inputAmount.value) {
+        const inicial = inputAmount.value.replace(/\D/g, '');
+        if (inicial) {
+            inputAmount.value = formatarInputMoeda(inicial);
+        }
+    }
+}
 
 document.addEventListener('input', (e) => {
     if (e.target.type === 'number' || e.target.type === 'date' || e.target.tagName === 'SELECT') {
