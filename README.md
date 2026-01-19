@@ -4,7 +4,8 @@ Simulador profissional de investimentos em renda fixa desenvolvido por **Alex Ga
 
 ## Acesse a Calculadora
 
-**[Clique aqui para usar](https://galdino03.github.io/Calculadora-de-Renda-Fixa)**
+**[Clique aqui para usar](https://alex-galdino.github.io/Calculadora-de-Renda-Fixa)**
+alex-galdino.github.io/Calculadora-de-Renda-Fixa
 
 ## Funcionalidades
 
